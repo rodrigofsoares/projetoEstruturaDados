@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 //definir constantes
-#define TAMANHO 500
+#define TAMANHO 501
 //variavel utilizada para menu
 int opcao;
 
@@ -25,78 +25,92 @@ void venderBilhete(){
         for(i=0; i<TAMANHO; i++){
             //verifica se a posição esta vazia
             printf("Escolha sua poltrona: ");
-                    scanf("%d",&aux);
+            scanf("%d",&aux);
 
             b[aux].poltrona==aux;
 
-            if(b[aux].ocupado !=1) {
+                if((aux<=TAMANHO) && (b[aux].ocupado !=1)) {
 
 
                         if(aux<=100){
-                        printf("\n-------------------------------------------------\n");
-                        printf("voce ficara em uma poltrona especial taxa R$30,00 \n");
+                            printf("\n-------------------------------------------------\n");
+                            printf("voce ficara em uma poltrona especial taxa R$30,00 \n");
 
-                        }
+                            }
                         else{
-                        printf("\n-------------------------------------------------\n");
-                        printf("voce esta em uma poltrona simples taxa R$15,00 \n");
+                            printf("\n-------------------------------------------------\n");
+                            printf("voce ficara em uma poltrona simples taxa R$15,00 \n");
 
-                        }
-                printf("------------------------------------\n");
-               printf("NOME: ");
+                            }
+                        printf("------------------------------------\n");
+                        printf("NOME: ");
+                        fflush(stdin);//limpar o buffer
+                        gets(b[aux].nome);//recupera o nome digitado
 
-                fflush(stdin);//limpar o buffer
-                gets(b[aux].nome);//recupera o nome digitado
-                printf("------------------------------------\n");
-                printf("IDADE: ");
+                        printf("------------------------------------\n");
+                        printf("IDADE: ");
+                        scanf("%d",&b[aux].idade);
+                        fflush(stdin);
 
-                scanf("%d",&b[aux].idade);
-                fflush(stdin);
-
-                b[aux].ocupado = 1;
+                //esta atribuindo o numero 1 idicando que sera ocupada
+                            b[aux].ocupado = 1;
 
                 //Ápos inserir a pessoa não precisa mais percorrer o vetor
                 //o break para o fluxo
-            printf("---------------------------------------\n");
-            printf("%s,sua poltrona eh a de numero %d\n =======IT'S TIME!!!=======\n",b[aux].nome, aux);
-            printf("---------------------------------------\n\n");
-     system("pause");
-     break;
+                        printf("---------------------------------------\n");
+                        printf("%s,sua poltrona eh a de numero %d\n =======IT'S TIME!!!=======\n",b[aux].nome, aux);
+                        printf("---------------------------------------\n\n");
+                        system("pause");
+                        break;
 
-        }
-        else{
-        printf("-------------------------------------------------\n");
-        printf("****POSICAO OCUPADA****\n");}
-        printf("-------------------------------------------------\n");
-    }
+                }
+
+            else if(aux>=TAMANHO) {
+                    printf("====================\n");
+                    printf("= MAX 500 LUGARES===\n");
+                    printf("====================\n");
+                }
+
+            else if ((b[aux].ocupado = 1) && (aux<=TAMANHO)){
+                    printf("-------------------------------------------------\n");
+                    printf("****POSICAO OCUPADA****\n");
+                    printf("-------------------------------------------------\n");}
+                }
 }
+
+
+
+
 void consultarPoltrona(){
     int i;
     int aux;
 
         for(i = 0; i<TAMANHO; i++){
-
              printf("Digite poltrona para consulta: ");
-                    scanf("%d",&aux);
-            b[aux].poltrona==aux;
+            scanf("%d",&aux);
 
                 if(b[aux].ocupado==1){
+                        printf("A Poltrona %d esta ocupada\n",aux);
+                        printf("Nome do cliente: %s\n\n",b[aux].nome);
+                }
 
-            printf("A Poltrona %d esta ocupada\n",aux);
-            printf("Nome do cliente: %s\n",b[aux].nome);
-             }
+                else if(aux>=TAMANHO) {
+                        printf("====================\n");
+                        printf("= MAX 500 LUGARES===\n");
+                        printf("====================\n");
+                }
 
-            else{
-                printf("\na poltrona %d esta disponivel\n",aux);
-        break;
-            }
+                else{
+                        printf("\na poltrona %d esta disponivel\n",aux);
+                break;
+                }
 
         }
-        //pausa o sistema esperando proximo clique
-            system("pause");
-            //limpa a tela clear Scrrem
-            system("cls");
-        }
+                //pausa o sistema esperando proximo clique
+                system("pause");
+                //limpa a tela clear Scrrem
+                system("cls");
+    }
 
 
 void listarPoltronasGrupoEspecial(){
@@ -107,16 +121,15 @@ void listarPoltronasGrupoEspecial(){
             b[i].poltrona==i;
 
                 if(b[i].ocupado==1){
+                    printf("Poltrona especial %d \n",i);
+                    printf("Nome do cliente: %s\n\n\n",b[i].nome);
 
-            printf("Poltrona especial %d \n",i);
-            printf("Nome do cliente: %s\n\n\n",b[i].nome);
+                    cont++;
 
-        cont++;
-
-             }
-}
- printf("total de poltronas ocupadas %d\n\n",cont);
-system("pause");
+                }
+            }
+        printf("total de poltronas ocupadas %d\n\n",cont);
+        system("pause");
 }
 
 
@@ -126,34 +139,34 @@ void listarPoltronasGrupoSimples(){
      int cont=0;
 
         for(i = 101; i<TAMANHO; i++){
-            b[i].poltrona==i;
-
+                b[i].poltrona==i;
                 if(b[i].ocupado==1){
 
-            printf("Poltrona Simples: %d \n",i);
-            printf("Nome do cliente: %s\n\n\n",b[i].nome);
+                printf("Poltrona Simples: %d \n",i);
+                printf("Nome do cliente: %s\n\n\n",b[i].nome);
 
-        cont++;
+                cont++;
 
-             }
+                }
+        }
+
+        printf("total de poltronas ocupadas %d\n\n",cont);
+        system("pause");
 }
- printf("total de poltronas ocupadas %d\n\n",cont);
-system("pause");
-}
 
 
 
 
 
 
-void estornar(){
+/*void estornar(){
     int i;
     int aux;
 
         for(i = 0; i<TAMANHO; i++){
 
              printf("Digite poltrona para estorno: ");
-                    scanf("%d",&aux);
+                   scanf("%d",&aux);
             b[aux].poltrona==NULL;
 
 
@@ -162,14 +175,20 @@ void estornar(){
              }
 
         }
+
+        */
+
         void sair(){
+            printf("==============================\n");
+            printf("= O SISTEMA SERA FECHADO!!!  =\n");
+            printf("==============================");
                 system("exit");
         }
 
 
 
 void menu(){
-     printf("====================================\n");
+    printf("=====================================\n");
     printf("=====  ===  ===       ===       =====\n");
     printf("=====  ===  ===  ========  ==========\n");
     printf("=====  ===  ===      ====  ==========\n");
@@ -195,8 +214,8 @@ switch (opcao){
         case 2: consultarPoltrona();
         break;
 
-        case 3: estornar();
-        break;
+        //case 3: estornar();
+        //break;
 
         case 4:listarPoltronasGrupoEspecial();
         break;
