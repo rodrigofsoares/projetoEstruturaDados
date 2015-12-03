@@ -58,7 +58,7 @@ void venderBilhete(){
                 //Ápos inserir a pessoa não precisa mais percorrer o vetor
                 //o break para o fluxo
                         printf("---------------------------------------\n");
-                        printf("%s,sua poltrona eh a de numero %d\n =======IT'S TIME!!!=======\n",b[aux].nome, aux);
+                        printf("%s,sua poltrona eh a de numero %d\n",b[aux].nome, aux);
                         printf("---------------------------------------\n\n");
                         system("pause");
                         break;
@@ -188,13 +188,9 @@ void listarPoltronasGrupoSimples(){
 
 
 void menu(){
+
     printf("=====================================\n");
-    printf("=====  ===  ===       ===       =====\n");
-    printf("=====  ===  ===  ========  ==========\n");
-    printf("=====  ===  ===      ====  ==========\n");
-    printf("=====       ===  ========       =====\n");
-    printf("=====================================\n");
-    printf("=============BILHETERIA==============\n");
+    printf("========B I L H E T E R I A==========\n");
     printf("=====================================\n");
     printf("1-VENDER BILHETE\n\n");
     printf("2-CONSULTAR POLTRONA\n\n");
